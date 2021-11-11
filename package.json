@@ -1,8 +1,8 @@
 {
   "name": "phone-crud-rest-api-nest",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Telephones CRUD using Nest Framework",
+  "author": "Marcelo Hoffmeister",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
