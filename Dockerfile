@@ -18,4 +18,4 @@ RUN useradd -G www-data,root -ms /bin/bash -d /home/luffy luffy
 RUN mkdir -p /home/luffy/.composer && \
     chown -R luffy:luffy /var/www/html
 
-USER root
+USER luffy
