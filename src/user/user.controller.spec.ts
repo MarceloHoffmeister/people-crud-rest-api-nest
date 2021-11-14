@@ -22,7 +22,7 @@ describe('UserController', () => {
     sut = module.get<UserController>(UserController);
   });
 
-  it('should return a user dto', () => {
+  it('should return a user entity', () => {
     const userData: CreateUserDto = {
       username: 'Marcelo Hoffmeister',
       email: 'marcelo@mail.com',
