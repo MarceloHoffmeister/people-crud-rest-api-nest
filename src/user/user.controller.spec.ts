@@ -22,13 +22,17 @@ describe('UserController', () => {
     sut = module.get<UserController>(UserController);
   });
 
-  it('should return a user entity', () => {
+  it('should return a user entity', async () => {
     const userData: CreateUserDto = {
       username: 'Marcelo Hoffmeister',
       email: 'marcelo@mail.com',
       password: '123456',
     };
 
-    expect(sut.create(userData)).toMatchObject(<UserEntity>userData);
+    expect(await sut.create(userData)).toMatchObject(<UserEntity>userData);
+  });
+
+  it('should return a collection of users entity', async () => {
+    expect(await sut.findAll()).toEqual(<UserEntity[]>[{}]);
   });
 });

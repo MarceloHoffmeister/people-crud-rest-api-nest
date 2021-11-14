@@ -35,4 +35,8 @@ describe('UserService', () => {
     const res = await sut.create(userData);
     expect(bcrypt.compare(res.password, userData.password)).toBeTruthy();
   });
+
+  it('should return a collection of users entity', async () => {
+    expect(await sut.findAll()).toEqual(<UserEntity[]>[{}]);
+  });
 });

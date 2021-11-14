@@ -18,11 +18,11 @@ export class UserService {
 
     password = await bcrypt.hash(password, await bcrypt.genSalt());
 
-    return this.userRepository.save({ ...userData, password });
+    return await this.userRepository.save({ ...userData, password });
   }
 
-  /*findAll() {
-    return `This action returns all user`;
+  async findAll(): Promise<UserEntity[]> {
+    return await this.userRepository.find();
   }
 
   findOne(id: number) {
@@ -35,5 +35,5 @@ export class UserService {
 
   remove(id: number) {
     return `This action removes a #${id} user`;
-  }*/
+  }
 }

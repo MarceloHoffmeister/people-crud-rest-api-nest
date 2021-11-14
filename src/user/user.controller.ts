@@ -17,13 +17,13 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() userData: CreateUserDto): Promise<UserEntity> {
-    return this.userService.create(userData);
+  async create(@Body() userData: CreateUserDto): Promise<UserEntity> {
+    return await this.userService.create(userData);
   }
 
-  /*@Get()
-  findAll() {
-    return this.userService.findAll();
+  @Get()
+  async findAll(): Promise<UserEntity[]> {
+    return await this.userService.findAll();
   }
 
   @Get(':id')
@@ -39,5 +39,5 @@ export class UserController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(+id);
-  }*/
+  }
 }
