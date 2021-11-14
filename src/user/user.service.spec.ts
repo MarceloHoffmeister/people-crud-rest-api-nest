@@ -1,18 +1,34 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service';
+import { UserEntity } from './user.entity';
+import { mockRepository } from '../mocks/repositoryMockFactory';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { CreateUserDto } from './dto/create-user.dto';
 
 describe('UserService', () => {
-  let service: UserService;
+  let sut: UserService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [UserService],
+      providers: [
+        UserService,
+        {
+          provide: getRepositoryToken(UserEntity),
+          useFactory: mockRepository,
+        },
+      ],
     }).compile();
 
-    service = module.get<UserService>(UserService);
+    sut = module.get<UserService>(UserService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  it('should return a user dto', () => {
+    const userData: CreateUserDto = {
+      username: 'Marcelo Hoffmeister',
+      email: 'marcelo@mail.com',
+      password: '123456',
+    };
+
+    expect(sut.create(userData)).toMatchObject(<UserEntity>userData);
   });
 });

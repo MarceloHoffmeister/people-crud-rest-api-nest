@@ -2,28 +2,33 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { mockService } from '../mocks/serviceMockFactory';
+import { UserEntity } from './user.entity';
 
 describe('UserController', () => {
-  let controller: UserController;
+  let sut: UserController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UserController],
-      providers: [UserService],
+      providers: [
+        {
+          provide: UserService,
+          useFactory: mockService,
+        },
+      ],
     }).compile();
 
-    controller = module.get<UserController>(UserController);
+    sut = module.get<UserController>(UserController);
   });
 
-  describe('create', () => {
-    it('should return a user dto', () => {
-      const userData = {
-        username: 'Marcelo Hoffmeister',
-        email: 'marcelohenriquehoffmeister@gmail.com',
-        password: '123456789',
-      };
+  it('should return a user dto', () => {
+    const userData: CreateUserDto = {
+      username: 'Marcelo Hoffmeister',
+      email: 'marcelo@mail.com',
+      password: '123456',
+    };
 
-      expect(controller.create(<CreateUserDto>userData)).toEqual(userData);
-    });
+    expect(sut.create(userData)).toMatchObject(<UserEntity>userData);
   });
 });
