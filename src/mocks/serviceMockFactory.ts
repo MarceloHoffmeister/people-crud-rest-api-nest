@@ -35,15 +35,11 @@ export const mockService = jest.fn(() => ({
         },
       ];
   }),
-  validateUser: jest.fn(async (email: string, password: string) => {
-    if (password === 'any_password') {
-      return {
-        id: 1,
-        username: 'Marcelo Hoffmeister',
-        email: 'marcelo@mail.com',
-      };
-    }
-
-    return null;
+  login: jest.fn(async ({ username, userId }) => {
+    if (username === 'Marcelo Hoffmeister')
+      return { access_token: 'any_token' };
+  }),
+  sign: jest.fn(({ username, sub }) => {
+    return 'any_token';
   }),
 }));
