@@ -7,6 +7,11 @@ import { CreateUserDto } from './dto/create-user.dto';
 
 describe('UserService', () => {
   let sut: UserService;
+  const userData: CreateUserDto = {
+    username: 'Marcelo Hoffmeister',
+    email: 'marcelo@mail.com',
+    password: '123456',
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -22,13 +27,7 @@ describe('UserService', () => {
     sut = module.get<UserService>(UserService);
   });
 
-  it('should return a user dto', async () => {
-    const userData: CreateUserDto = {
-      username: 'Marcelo Hoffmeister',
-      email: 'marcelo@mail.com',
-      password: '123456',
-    };
-
+  it('should return a user data', async () => {
     expect(await sut.create(userData)).toMatchObject({
       username: userData.username,
       email: userData.email,
@@ -37,5 +36,15 @@ describe('UserService', () => {
 
   it('should return a collection of users entity', async () => {
     expect(await sut.findAll()).toEqual(<UserEntity[]>[{}]);
+  });
+
+  it('should return a searched user', async () => {
+    const resp = await sut.create(userData);
+
+    expect(await sut.findOne(resp.id)).toMatchObject({
+      id: 1,
+      username: userData.username,
+      email: userData.email,
+    });
   });
 });
