@@ -1,4 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { IsEmail } from 'class-validator';
+import { Exclude } from 'class-transformer';
 
 @Entity('user')
 export class UserEntity {
@@ -8,9 +10,11 @@ export class UserEntity {
   @Column({ nullable: false })
   username: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, unique: true })
+  @IsEmail()
   email: string;
 
   @Column({ nullable: false, select: false })
+  @Exclude()
   password: string;
 }

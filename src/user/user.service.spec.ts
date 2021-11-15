@@ -4,7 +4,6 @@ import { UserEntity } from './user.entity';
 import { mockRepository } from '../mocks/repositoryMockFactory';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
-import * as bcrypt from 'bcrypt';
 
 describe('UserService', () => {
   let sut: UserService;
@@ -30,10 +29,10 @@ describe('UserService', () => {
       password: '123456',
     };
 
-    expect(await sut.create(userData)).toHaveProperty('email', userData.email);
-
-    const res = await sut.create(userData);
-    expect(bcrypt.compare(res.password, userData.password)).toBeTruthy();
+    expect(await sut.create(userData)).toMatchObject({
+      username: userData.username,
+      email: userData.email,
+    });
   });
 
   it('should return a collection of users entity', async () => {

@@ -5,6 +5,7 @@ import { UserEntity } from './user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class UserService {
@@ -18,7 +19,13 @@ export class UserService {
 
     password = await bcrypt.hash(password, await bcrypt.genSalt());
 
-    return await this.userRepository.save({ ...userData, password });
+    return plainToClass(
+      UserEntity,
+      await this.userRepository.save(<UserEntity>{
+        ...userData,
+        password,
+      }),
+    );
   }
 
   async findAll(): Promise<UserEntity[]> {

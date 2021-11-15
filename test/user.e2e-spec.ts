@@ -4,7 +4,6 @@ import * as request from 'supertest';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreateUserDto } from '../src/user/dto/create-user.dto';
 import { UserModule } from '../src/user/user.module';
-import { UserEntity } from '../src/user/user.entity';
 
 describe('UserController (e2e)', () => {
   let app: INestApplication;
