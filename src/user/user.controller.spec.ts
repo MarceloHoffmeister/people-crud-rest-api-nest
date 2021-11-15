@@ -4,6 +4,7 @@ import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { mockService } from '../mocks/serviceMockFactory';
 import { UserEntity } from './user.entity';
+import { HttpStatus } from '@nestjs/common/enums';
 
 describe('UserController', () => {
   let sut: UserController;
@@ -62,6 +63,14 @@ describe('UserController', () => {
       id: resp.id.toString(),
       username: newUserData.username,
       email: newUserData.email,
+    });
+  });
+
+  it('should delete a user', async () => {
+    const resp = await sut.create(userData);
+
+    expect(await sut.remove(resp.id.toString())).toMatchObject({
+      status: HttpStatus.OK,
     });
   });
 });

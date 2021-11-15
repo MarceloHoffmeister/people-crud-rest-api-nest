@@ -1,5 +1,6 @@
 import { UserEntity } from '../user/user.entity';
 import { UserDto } from '../user/dto/user.dto';
+import { HttpStatus } from '@nestjs/common/enums';
 
 export const mockService = jest.fn(() => ({
   create: jest.fn(async (entity: UserDto) => {
@@ -19,5 +20,8 @@ export const mockService = jest.fn(() => ({
       username: userData.username,
       email: userData.email,
     };
+  }),
+  remove: jest.fn(async (id: string) => {
+    return { status: HttpStatus.OK };
   }),
 }));
