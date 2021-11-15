@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserDto } from '../src/user/dto/create-user.dto';
+import { UserDto } from '../src/user/dto/user.dto';
 import { UserModule } from '../src/user/user.module';
 
 describe('UserController (e2e)', () => {
@@ -18,7 +18,7 @@ describe('UserController (e2e)', () => {
           port: 25432,
           username: 'admin',
           password: 'admin',
-          database: 'varejao',
+          database: 'test',
           autoLoadEntities: true,
           synchronize: true,
         }),
@@ -45,5 +45,28 @@ describe('UserController (e2e)', () => {
       .post('/user')
       .send(userData)
       .expect(201);
+  });
+
+  it('/user (GET ALL)', () => {
+    return request(app.getHttpServer()).get('/user/1').expect(200);
+  });
+
+  it('/user/:id (GET BY ID)', () => {
+    return request(app.getHttpServer()).get('/user/1').expect(200);
+  });
+
+  it('/user/:id (PATCH)', () => {
+    return request(app.getHttpServer())
+      .patch('/user/1')
+      .send({
+        username: 'Marcelo Henrique Hoffmeister',
+        email: 'marcelohoffmeister@mail.com',
+        password: '123456789',
+      })
+      .expect(200);
+  });
+
+  it('/user/:id (DELETE)', () => {
+    return request(app.getHttpServer()).delete('/user/1').expect(200);
   });
 });
