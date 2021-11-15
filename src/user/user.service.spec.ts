@@ -8,6 +8,7 @@ import { HttpStatus } from '@nestjs/common/enums';
 
 describe('UserService', () => {
   let sut: UserService;
+
   const userData: UserDto = {
     username: 'Marcelo Hoffmeister',
     email: 'marcelo@mail.com',
@@ -70,5 +71,17 @@ describe('UserService', () => {
     expect(await sut.remove(resp.id)).toMatchObject({
       status: HttpStatus.OK,
     });
+  });
+
+  it('should return a searched user by email', async () => {
+    const resp = await sut.create(userData);
+
+    expect(await sut.findByEmail(resp.email)).toMatchObject([
+      {
+        id: 1,
+        username: userData.username,
+        email: userData.email,
+      },
+    ]);
   });
 });

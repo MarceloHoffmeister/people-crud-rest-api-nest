@@ -12,7 +12,7 @@ export class UserEntity {
   @Column({ nullable: false, unique: true })
   email: string;
 
-  @Column({ nullable: false, select: false })
+  @Column({ nullable: false })
   @Exclude()
   password: string;
 }

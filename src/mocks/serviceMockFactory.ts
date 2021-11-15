@@ -24,4 +24,26 @@ export const mockService = jest.fn(() => ({
   remove: jest.fn(async (id: string) => {
     return { status: HttpStatus.OK };
   }),
+  findByEmail: jest.fn(async (email: string) => {
+    if (email === 'marcelo@mail.com')
+      return [
+        {
+          id: 1,
+          username: 'Marcelo Hoffmeister',
+          email: 'marcelo@mail.com',
+          password: 'any_password',
+        },
+      ];
+  }),
+  validateUser: jest.fn(async (email: string, password: string) => {
+    if (password === 'any_password') {
+      return {
+        id: 1,
+        username: 'Marcelo Hoffmeister',
+        email: 'marcelo@mail.com',
+      };
+    }
+
+    return null;
+  }),
 }));

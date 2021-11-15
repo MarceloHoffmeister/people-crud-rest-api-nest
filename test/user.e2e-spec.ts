@@ -4,6 +4,8 @@ import * as request from 'supertest';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserDto } from '../src/user/dto/user.dto';
 import { UserModule } from '../src/user/user.module';
+import { getConnection } from 'typeorm';
+import { AuthModule } from '../dist/auth/auth.module';
 
 describe('UserController (e2e)', () => {
   let app: INestApplication;
@@ -28,6 +30,12 @@ describe('UserController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+  });
+
+  beforeEach(async () => {
+    for (const entity of getConnection().entityMetadatas) {
+      await getConnection().getRepository(entity.name).clear();
+    }
   });
 
   afterEach(async () => {

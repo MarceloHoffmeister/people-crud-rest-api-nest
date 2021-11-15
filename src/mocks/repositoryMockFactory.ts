@@ -6,7 +6,25 @@ export const mockRepository = jest.fn(() => ({
   save: jest.fn((entity: UserEntity) => {
     return { id: 1, username: entity.username, email: entity.email };
   }),
-  find: jest.fn(() => <UserEntity[]>[{}]),
+  find: jest.fn((params) => {
+    if (params) {
+      const {
+        where: { email },
+      } = params;
+
+      if (email === 'marcelo@mail.com') {
+        return <UserEntity[]>[
+          {
+            id: 1,
+            username: 'Marcelo Hoffmeister',
+            email: 'marcelo@mail.com',
+          },
+        ];
+      }
+    }
+
+    return <UserEntity[]>[{}];
+  }),
   findOne: jest.fn(async (id: string) => {
     return {
       id: 1,
