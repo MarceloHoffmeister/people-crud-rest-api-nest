@@ -52,7 +52,7 @@ services:
     container_name: api-node
     volumes:
       - .:/var/www/html
-      - /var/www/html/node_modules
+      - ./node_modules:/var/www/html/node_modules
     depends_on:
       - db
     networks:
