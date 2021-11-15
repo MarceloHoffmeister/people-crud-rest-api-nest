@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { UserDto } from './dto/user.dto';
 import { mockService } from '../mocks/serviceMockFactory';
 import { UserEntity } from './user.entity';
 
 describe('UserController', () => {
   let sut: UserController;
-  const userData: CreateUserDto = {
+  const userData: UserDto = {
     username: 'Marcelo Hoffmeister',
     email: 'marcelo@mail.com',
     password: '123456',
@@ -46,6 +46,22 @@ describe('UserController', () => {
       id: 1,
       username: userData.username,
       email: userData.email,
+    });
+  });
+
+  it('should return a searched user', async () => {
+    const newUserData: UserDto = {
+      username: 'Marcelo Henrique Hoffmeister',
+      email: 'marcelo_new_email@mail.com',
+      password: '123456789',
+    };
+
+    const resp = await sut.create(userData);
+
+    expect(await sut.update(resp.id.toString(), newUserData)).toMatchObject({
+      id: resp.id.toString(),
+      username: newUserData.username,
+      email: newUserData.email,
     });
   });
 });
