@@ -33,7 +33,7 @@ export class UserService {
   }
 
   async findOne(id: number): Promise<UserEntity> {
-    return await this.userRepository.findOne();
+    return await this.userRepository.findOne(id);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
