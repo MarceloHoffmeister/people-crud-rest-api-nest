@@ -12,6 +12,7 @@ import {
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { UserEntity } from './user.entity';
+import { UpdateResult } from 'typeorm';
 
 @Controller('user')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -37,7 +38,7 @@ export class UserController {
   async update(
     @Param('id') id: string,
     @Body() userData: UserDto,
-  ): Promise<UserEntity> {
+  ): Promise<UpdateResult> {
     return await this.userService.update(+id, userData);
   }
 

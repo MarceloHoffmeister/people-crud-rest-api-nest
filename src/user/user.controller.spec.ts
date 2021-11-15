@@ -49,7 +49,7 @@ describe('UserController', () => {
     });
   });
 
-  it('should return a searched user', async () => {
+  it('should return a updated user', async () => {
     const newUserData: UserDto = {
       username: 'Marcelo Henrique Hoffmeister',
       email: 'marcelo_new_email@mail.com',

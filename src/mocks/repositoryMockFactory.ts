@@ -1,4 +1,5 @@
 import { UserEntity } from '../user/user.entity';
+import { UserDto } from '../user/dto/user.dto';
 
 export const mockRepository = jest.fn(() => ({
   save: jest.fn((entity: UserEntity) => {
@@ -10,6 +11,13 @@ export const mockRepository = jest.fn(() => ({
       id: 1,
       username: 'Marcelo Hoffmeister',
       email: 'marcelo@mail.com',
+    };
+  }),
+  update: jest.fn(async (id: string, userData: UserDto) => {
+    return {
+      username: userData.username,
+      email: userData.email,
+      password: userData.password,
     };
   }),
 }));

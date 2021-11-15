@@ -47,4 +47,19 @@ describe('UserService', () => {
       email: userData.email,
     });
   });
+
+  it('should return a updated user', async () => {
+    const newUserData: UserDto = {
+      username: 'Marcelo Henrique Hoffmeister',
+      email: 'marcelo_new_email@mail.com',
+      password: '123456789',
+    };
+
+    const resp = await sut.create(userData);
+
+    expect(await sut.update(resp.id, newUserData)).toMatchObject({
+      username: newUserData.username,
+      email: newUserData.email,
+    });
+  });
 });
