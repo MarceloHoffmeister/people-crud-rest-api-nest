@@ -4,6 +4,7 @@ import { UserEntity } from './user.entity';
 import { mockRepository } from '../mocks/repositoryMockFactory';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { UserDto } from './dto/user.dto';
+import { HttpStatus } from '@nestjs/common/enums';
 
 describe('UserService', () => {
   let sut: UserService;
@@ -60,6 +61,14 @@ describe('UserService', () => {
     expect(await sut.update(resp.id, newUserData)).toMatchObject({
       username: newUserData.username,
       email: newUserData.email,
+    });
+  });
+
+  it('should delete a user', async () => {
+    const resp = await sut.create(userData);
+
+    expect(await sut.remove(resp.id)).toMatchObject({
+      status: HttpStatus.OK,
     });
   });
 });
