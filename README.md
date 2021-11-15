@@ -17,6 +17,7 @@
 - Repository pattern
 - TDD
 - Dependency injection
+- DTO
 - Git flow
 - Semantic versioning
 - Conventional commits
