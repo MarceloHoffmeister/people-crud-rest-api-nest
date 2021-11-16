@@ -1,0 +1,60 @@
+version: '3'
+
+volumes:
+  dbdata:
+    driver: local
+
+networks:
+  educar-network:
+    driver: bridge
+
+services:
+
+  web:
+    image: nginx:stable
+    container_name: educar-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - ./.docker/nginx/conf.d/educar.conf:/etc/nginx/conf.d/default.conf
+      - ./.docker/nginx/logs:/var/log/nginx
+    depends_on:
+      - php
+      - db
+    networks:
+      educar-network:
+        aliases:
+          - local.educar.com.br
+
+  db:
+    image: postgres:12
+    container_name: educar-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "25432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+      - ./.docker/database/init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: educar
+      POSTGRES_ROOT_PASSWORD: educar
+      SERVICE_TAGS: dev
+      SERVICE_NAME: educar
+    networks:
+      - educar-network
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: educar-php
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "9000:9000"
+    networks:
+      - educar-network

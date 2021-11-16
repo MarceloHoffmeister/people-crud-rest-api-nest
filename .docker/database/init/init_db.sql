@@ -1,0 +1,13 @@
+DROP DATABASE IF EXISTS "varejao";
+
+CREATE DATABASE "varejao";
+
+DROP DATABASE IF EXISTS "test";
+
+CREATE DATABASE "test";
+
+\connect varejao;
+CREATE EXTENSION IF NOT EXISTS unaccent;
+
+\connect test;
+CREATE EXTENSION IF NOT EXISTS unaccent;
