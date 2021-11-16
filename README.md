@@ -48,6 +48,8 @@ docker-compose down
 ```shell
 docker-compose down -v
 ```
+Há uma boa cobertura de código com testes unitários e integração. _Coverage_:
+![coverage](./coverage.png)
 
 ```text
 Este projeto está longe do pronto. Alguns pontos a melhorar:
