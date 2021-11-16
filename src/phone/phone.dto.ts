@@ -1,9 +1,7 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsArray, IsNotEmpty } from 'class-validator';
 
 export class PhoneDto {
+  @IsArray()
   @IsNotEmpty()
-  readonly name: string;
-
-  @IsNotEmpty()
-  readonly cellphone: string;
+  readonly contacts;
 }

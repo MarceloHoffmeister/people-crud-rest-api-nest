@@ -35,8 +35,18 @@ export class UserService {
     return await this.userRepository.findOne(id);
   }
 
-  async update(id: number, userData: UserDto): Promise<UpdateResult> {
-    return await this.userRepository.update(id, userData);
+  async update(id: number, userData: UserDto): Promise<UserEntity> {
+    let { password } = userData;
+
+    password = await bcrypt.hash(password, await bcrypt.genSalt());
+
+    return plainToClass(
+      UserEntity,
+      await this.userRepository.update(id, <UserEntity>{
+        ...userData,
+        password,
+      }),
+    );
   }
 
   async remove(id: number): Promise<DeleteResult> {
