@@ -1,5 +1,5 @@
 import { UserEntity } from '../user/user.entity';
-import { UserDto } from '../user/dto/user.dto';
+import { UserDto } from '../user/user.dto';
 import { HttpStatus } from '@nestjs/common/enums';
 
 export const mockService = jest.fn(() => ({

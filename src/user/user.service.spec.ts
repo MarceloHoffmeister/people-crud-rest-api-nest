@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
 import { mockRepository } from '../mocks/repositoryMockFactory';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { UserDto } from './dto/user.dto';
+import { UserDto } from './user.dto';
 import { HttpStatus } from '@nestjs/common/enums';
 
 describe('UserService', () => {

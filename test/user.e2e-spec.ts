@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserDto } from '../src/user/dto/user.dto';
+import { UserDto } from '../src/user/user.dto';
 import { UserModule } from '../src/user/user.module';
 import { Connection, getConnection } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
