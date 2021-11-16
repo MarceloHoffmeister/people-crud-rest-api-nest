@@ -22,10 +22,12 @@ describe('PhoneController', () => {
 
   it('should save json data', () => {
     expect(
-      sut.save([
-        { name: 'Marcelo Hoffmeister', cellphone: '5541996767913' },
-        { name: 'Mayara Hoffmeister', cellphone: '5541996802345' },
-      ]),
+      sut.save({
+        contacts: [
+          { name: 'Marcelo Hoffmeister', cellphone: '5541996767913' },
+          { name: 'Mayara Hoffmeister', cellphone: '5541996802345' },
+        ],
+      }),
     ).toBeDefined();
   });
 });

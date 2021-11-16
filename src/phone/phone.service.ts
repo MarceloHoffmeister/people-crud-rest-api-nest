@@ -11,15 +11,11 @@ export class PhoneService {
     private readonly phoneRepository: Repository<PhoneEntity>,
   ) {}
 
-  async save(phonesData: []) {
-    try {
-      for (const phone of phonesData) {
-        await this.phoneRepository.save(phone);
-      }
-
-      return HttpStatus.CREATED;
-    } catch (error) {
-      throw new Error(error.message);
+  async save(phonesData) {
+    for (const phone of phonesData) {
+      await this.phoneRepository.save(phone);
     }
+
+    return HttpStatus.CREATED;
   }
 }
