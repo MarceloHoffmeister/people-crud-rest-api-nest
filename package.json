@@ -82,6 +82,7 @@
       "**/*.(t|j)s",
       "!**/*.module.(t|j)s",
       "!**/*.guard.(t|j)s",
+      "!**/*.dto.(t|j)s",
       "!**/*.strategy.(t|j)s",
       "!**/main.(t|j)s"
     ],

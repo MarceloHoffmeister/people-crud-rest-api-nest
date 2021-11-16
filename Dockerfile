@@ -7,14 +7,12 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /var/www/html
 
-COPY package.json .
-
-RUN npm install --quiet
-
-COPY . .
-
 # Create system user
 RUN useradd -G www-data,root -ms /bin/bash -d /home/luffy luffy
 RUN chown -R luffy.www-data /var/www/html
 
-USER root
+USER luffy
+
+COPY package.json .
+
+COPY . .
