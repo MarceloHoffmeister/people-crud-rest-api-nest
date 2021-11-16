@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "ac1e5e0f-5fb0-47a3-9004-0e1066c4fab0",
+		"name": "People-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Marcelo Hoffmeister\",\n    \"email\": \"marcelo@mail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "172.17.0.1:8080/user",
+							"host": [
+								"172",
+								"17",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Marcelo Hoffmeister\",\n    \"email\": \"marcelohoffmeister@mail.com\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "172.17.0.1:8080/user/1",
+							"host": [
+								"172",
+								"17",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "172.17.0.1:8080/user/3",
+							"host": [
+								"172",
+								"17",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "172.17.0.1:8080/user",
+							"host": [
+								"172",
+								"17",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "172.17.0.1:8080/user/3",
+							"host": [
+								"172",
+								"17",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"marcelo@mail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "172.17.0.1:8080/auth/login",
+							"host": [
+								"172",
+								"17",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Phone",
+			"item": [
+				{
+					"name": "create many",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contacts\": [\n        {\n            \"name\": \"Srta. Isabelly Castro\",\n            \"cellphone\": \"5541959365078\"\n        },\n        {\n            \"name\": \"Ana Julia da Rocha\",\n            \"cellphone\": \"5541923038062\"\n        },\n        {\n            \"name\": \"Srta. Ana Júlia Ramos\",\n            \"cellphone\": \"5541968425283\"\n        },\n        {\n            \"name\": \"Isis Cunha\",\n            \"cellphone\": \"5541990355873\"\n        },\n        {\n            \"name\": \"Maria Luiza Nunes\",\n            \"cellphone\": \"5541991004754\"\n        },\n        {\n            \"name\": \"Maria Sophia Almeida\",\n            \"cellphone\": \"5541945332923\"\n        },\n        {\n            \"name\": \"Vinicius da Mota\",\n            \"cellphone\": \"5541920886383\"\n        },\n        {\n            \"name\": \"Srta. Ana Carolina Rocha\",\n            \"cellphone\": \"5541926309141\"\n        },\n        {\n            \"name\": \"Daniela Gomes\",\n            \"cellphone\": \"5541974810709\"\n        },\n        {\n            \"name\": \"Lavínia Jesus\",\n            \"cellphone\": \"5541960205585\"\n        },\n        {\n            \"name\": \"Srta. Valentina Alves\",\n            \"cellphone\": \"5541988890081\"\n        },\n        {\n            \"name\": \"Yuri Carvalho\",\n            \"cellphone\": \"5541949602436\"\n        },\n        {\n            \"name\": \"Sarah Mendes\",\n            \"cellphone\": \"5541930624830\"\n        },\n        {\n            \"name\": \"Sr. Marcos Vinicius Mendes\",\n            \"cellphone\": \"5541900589188\"\n        },\n        {\n            \"name\": \"André Teixeira\",\n            \"cellphone\": \"5541967243918\"\n        },\n        {\n            \"name\": \"Samuel Lopes\",\n            \"cellphone\": \"5541959496891\"\n        },\n        {\n            \"name\": \"Daniel Moreira\",\n            \"cellphone\": \"5541970655330\"\n        },\n        {\n            \"name\": \"Emanuelly Cardoso\",\n            \"cellphone\": \"5541991813634\"\n        },\n        {\n            \"name\": \"Davi Lucas Lopes\",\n            \"cellphone\": \"5541939435678\"\n        },\n        {\n            \"name\": \"Francisco Martins\",\n            \"cellphone\": \"5541963119174\"\n        },\n        {\n            \"name\": \"Maria Fogaça\",\n            \"cellphone\": \"5541949026819\"\n        },\n        {\n            \"name\": \"Maria Cecília Viana\",\n            \"cellphone\": \"5541924860240\"\n        },\n        {\n            \"name\": \"Juliana Costa\",\n            \"cellphone\": \"5541996398868\"\n        },\n        {\n            \"name\": \"Maria Eduarda da Paz\",\n            \"cellphone\": \"5541936165261\"\n        },\n        {\n            \"name\": \"Amanda Viana\",\n            \"cellphone\": \"5541910315237\"\n        },\n        {\n            \"name\": \"João Gabriel Melo\",\n            \"cellphone\": \"5541913055986\"\n        },\n        {\n            \"name\": \"Lucca Costela\",\n            \"cellphone\": \"5541943670500\"\n        },\n        {\n            \"name\": \"Maria Fernanda Almeida\",\n            \"cellphone\": \"5541988430193\"\n        },\n        {\n            \"name\": \"Luna Campos\",\n            \"cellphone\": \"5541977964938\"\n        },\n        {\n            \"name\": \"Stella Jesus\",\n            \"cellphone\": \"5541948305911\"\n        },\n        {\n            \"name\": \"Ana Beatriz Monteiro\",\n            \"cellphone\": \"5541952033367\"\n        },\n        {\n            \"name\": \"Joana Fernandes\",\n            \"cellphone\": \"5541903927576\"\n        },\n        {\n            \"name\": \"Manuela da Conceição\",\n            \"cellphone\": \"5541928565082\"\n        },\n        {\n            \"name\": \"Cauã da Cruz\",\n            \"cellphone\": \"5541959933264\"\n        },\n        {\n            \"name\": \"Srta. Yasmin Pires\",\n            \"cellphone\": \"5541918382396\"\n        },\n        {\n            \"name\": \"Srta. Ana Laura da Conceição\",\n            \"cellphone\": \"5541929603658\"\n        },\n        {\n            \"name\": \"Maysa Almeida\",\n            \"cellphone\": \"5541972308432\"\n        },\n        {\n            \"name\": \"Sra. Emanuelly Cardoso\",\n            \"cellphone\": \"5541904321652\"\n        },\n        {\n            \"name\": \"Maria Fernanda Almeida\",\n            \"cellphone\": \"5541988173394\"\n        },\n        {\n            \"name\": \"Luiz Gustavo Barros\",\n            \"cellphone\": \"5541913670888\"\n        },\n        {\n            \"name\": \"Marcela Gomes\",\n            \"cellphone\": \"5541934928953\"\n        },\n        {\n            \"name\": \"Maria Julia Cardoso\",\n            \"cellphone\": \"5541920227660\"\n        },\n        {\n            \"name\": \"Luiz Gustavo Silva\",\n            \"cellphone\": \"5541984599886\"\n        },\n        {\n            \"name\": \"Gabriela Pires\",\n            \"cellphone\": \"5541937910313\"\n        },\n        {\n            \"name\": \"Diego das Neves\",\n            \"cellphone\": \"5541931724243\"\n        },\n        {\n            \"name\": \"Felipe Lima\",\n            \"cellphone\": \"5541998289321\"\n        },\n        {\n            \"name\": \"Alana da Luz\",\n            \"cellphone\": \"5541960592911\"\n        },\n        {\n            \"name\": \"Enzo Gabriel Correia\",\n            \"cellphone\": \"5541916151881\"\n        },\n        {\n            \"name\": \"Ana Sophia Silva\",\n            \"cellphone\": \"5541980983923\"\n        },\n        {\n            \"name\": \"Natália Cardoso\",\n            \"cellphone\": \"5541994336786\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "172.17.0.1:8080/phone",
+							"host": [
+								"172",
+								"17",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"phone"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmNlbG9AbWFpbC5jb20iLCJpYXQiOjE2MzcwNDY5MzJ9.QfnNTU_A_WC62nVKsib0O1MjzVY3AH5cc4iAXaqAcJM",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
