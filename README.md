@@ -10,7 +10,6 @@
 - Postgres
 - Nginx
 - Docker
-- Swagger
 
 ### Designs
 - Service pattern
