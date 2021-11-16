@@ -23,7 +23,14 @@
 - Conventional commits
 
 ### Mounting dev environment
-1. On first time, to download images and build containers:
+1. Install packages using _yarn_ or _npm_:
+```shell
+yarn install
+```
+```shell
+npm install
+```
+2. On first time, to download images and build containers:
 ```shell
 docker-compose up --build
 ```
@@ -34,11 +41,11 @@ docker-compose up --build -d
 ```shell
 docker-compose up -d
 ```
-2. To stop containers use:
+3. To stop containers use:
 ```shell
 docker-compose down
 ```
-3. To stop containers and remove volumes use:
+4. To stop containers and remove volumes use:
 ```shell
 docker-compose down -v
 ```
