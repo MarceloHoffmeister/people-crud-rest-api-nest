@@ -18,10 +18,10 @@ import { JwtStrategy } from './jwt.strategy';
       }),
       inject: [ConfigService],
     }),
-    JwtModule.register({ signOptions: { expiresIn: '60s' } }),
+    JwtModule.register({ signOptions: { expiresIn: '86400s' } }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
-  exports: [AuthService],
+  exports: [AuthService, JwtStrategy],
 })
 export class AuthModule {}
