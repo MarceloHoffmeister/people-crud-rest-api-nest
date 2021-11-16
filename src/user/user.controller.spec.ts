@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
-import { UserDto } from './dto/user.dto';
+import { UserDto } from './user.dto';
 import { mockService } from '../mocks/serviceMockFactory';
 import { UserEntity } from './user.entity';
 import { HttpStatus } from '@nestjs/common/enums';

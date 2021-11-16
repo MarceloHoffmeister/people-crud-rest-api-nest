@@ -37,12 +37,6 @@ describe('Auth domain (e2e)', () => {
     await app.init();
   });
 
-  /*beforeEach(async () => {
-    for (const entity of getConnection().entityMetadatas) {
-      await getConnection().getRepository(entity.name).clear();
-    }
-  });*/
-
   beforeEach(async () => {
     await app
       .get(Connection)

@@ -2,15 +2,16 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserDto } from '../src/user/user.dto';
 import { UserModule } from '../src/user/user.module';
 import { Connection, getConnection } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from '../src/auth/auth.module';
 import { UserEntity } from '../src/user/user.entity';
 import * as bcrypt from 'bcrypt';
+import { PhoneDto } from '../src/phone/phone.dto';
+import { PhoneModule } from '../src/phone/phone.module';
 
-describe('User domain (e2e)', () => {
+describe('Auth domain (e2e)', () => {
   let app: INestApplication;
   let moduleFixture: TestingModule;
   let token: string;
@@ -31,6 +32,7 @@ describe('User domain (e2e)', () => {
         }),
         UserModule,
         AuthModule,
+        PhoneModule,
       ],
     }).compile();
 
@@ -46,8 +48,8 @@ describe('User domain (e2e)', () => {
       .insert()
       .into(UserEntity)
       .values({
-        username: 'Marcelo Hoffmeister',
-        email: 'marcelo@mail.com',
+        username: 'Marcelo Henrique Hoffmeister',
+        email: 'marcelo@gmail.com',
         password: await bcrypt.hash('123456', await bcrypt.genSalt()),
       })
       .execute();
@@ -63,56 +65,27 @@ describe('User domain (e2e)', () => {
 
   it('/auth/login (POST)', async () => {
     const res = await request(app.getHttpServer()).post('/auth/login').send({
-      email: 'marcelo@mail.com',
+      email: 'marcelo@gmail.com',
       password: '123456',
     });
 
     token = res.body.access_token;
   });
 
-  it('/user (POST)', () => {
-    const userData: UserDto = {
-      username: 'Marcelo Henrique',
-      email: 'marcelohenrique@mail.com',
-      password: '123456',
+  it('/phone (POST)', () => {
+    const phoneData: PhoneDto = {
+      contacts: [
+        {
+          name: 'Marcelo Henrique',
+          cellphone: '5541996767913',
+        },
+      ],
     };
 
     return request(app.getHttpServer())
-      .post('/user')
-      .send(userData)
+      .post('/phone')
+      .set('Authorization', `Bearer ${token}`)
+      .send(phoneData)
       .expect(201);
-  });
-
-  it('/user (GET ALL)', () => {
-    return request(app.getHttpServer())
-      .get('/user/1')
-      .set('Authorization', `Bearer ${token}`)
-      .expect(200);
-  });
-
-  it('/user/:id (GET BY ID)', () => {
-    return request(app.getHttpServer())
-      .get('/user/1')
-      .set('Authorization', `Bearer ${token}`)
-      .expect(200);
-  });
-
-  it('/user/:id (PATCH)', () => {
-    return request(app.getHttpServer())
-      .patch('/user/1')
-      .send({
-        username: 'Marcelo Henrique',
-        email: 'marcelohhoffmeister@mail.com',
-        password: '123456789',
-      })
-      .set('Authorization', `Bearer ${token}`)
-      .expect(200);
-  });
-
-  it('/user/:id (DELETE)', () => {
-    return request(app.getHttpServer())
-      .delete('/user/1')
-      .set('Authorization', `Bearer ${token}`)
-      .expect(200);
   });
 });

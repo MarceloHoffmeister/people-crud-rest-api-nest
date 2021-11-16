@@ -1,6 +1,7 @@
 import { UserEntity } from '../user/user.entity';
-import { UserDto } from '../user/dto/user.dto';
+import { UserDto } from '../user/user.dto';
 import { HttpStatus } from '@nestjs/common/enums';
+import { PhoneDto } from '../phone/phone.dto';
 
 export const mockService = jest.fn(() => ({
   create: jest.fn(async (entity: UserDto) => {
@@ -41,5 +42,8 @@ export const mockService = jest.fn(() => ({
   }),
   sign: jest.fn(({ username, sub }) => {
     return 'any_token';
+  }),
+  save: jest.fn(async (entity: PhoneDto[]) => {
+    return { status: 201 };
   }),
 }));
